@@ -6,6 +6,7 @@ import "../styles/cart.css";
 
 export const Shop = () => {
   const [products, setproducts] = useState([]);
+  const [updateCart, setUpdateCart] = useState(false);
   // const [cart, setCart] = useState([]);
   let location = useLocation();
   const navigate = useNavigate();
@@ -31,7 +32,10 @@ export const Shop = () => {
 
   return (
     <>
-      <Cart />
+      <Cart 
+        setUpdateCart={setUpdateCart}
+        updateCart={updateCart}
+      />
 
       <div className="container-card">
         {products.map((product) => (
@@ -45,7 +49,7 @@ export const Shop = () => {
               </button>
               <button
                 className="cart-button"
-                onClick={() => addToCart("cart", product)}
+                onClick={() =>{ addToCart("cart", product), setUpdateCart(true)}}
               >
                 Add to cart
               </button>
