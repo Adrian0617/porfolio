@@ -24,3 +24,14 @@ export function deleteItem(nameOfarray, id) {
   const newItems = getItems.filter((item) => item.id !== id);
   localStorage.setItem(nameOfarray, JSON.stringify(newItems));
 }
+
+export function searchList(list, by,word) {
+
+  const search = list.filter(item => {
+    if (item[by].toLowerCase().includes(word)) {
+      return item
+    }
+  })
+  return search;
+  
+}
