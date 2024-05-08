@@ -24,7 +24,7 @@
 }
 
 .detail-container img {
-  max-width: 250px;
+  max-width: 200px;
 }
 
 .detail-container h3 {
@@ -36,9 +36,52 @@
 .cart-button {
   background-color: white;
   border: none;
+  margin: 3px;
 }
 
 .cart-button:hover {
   cursor: pointer;
   text-decoration: underline;
 }
+
+.container-bar {
+  display: flex;
+  margin-top: 10px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+/* .container-bar > div:first-child{
+  width: 90% ;
+} */
+
+.buton-details {
+  background-color: white;
+  border: none;
+}
+
+.buton-details:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.header-card {
+  width: 50%;
+  height: 50%;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px; /* Espacio entre tarjetas */
+}
+
+.footer-card {
+  flex-direction: column;
+  bottom: 0; /* Lo posiciona en la parte inferior */
+  left: 0; /* Lo posiciona a la izquierda */
+  width: 100%; /* Ancho completo del div */
+  padding: 10px; /* Espacio interno */
+  align-items: center;
+  margin-top: auto;
+}
+
+

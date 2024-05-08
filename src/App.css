@@ -33,28 +33,28 @@ body {
 .container-card {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .card {
-  width: 200px;
-  height: 250px;
+  width: 250px;
+  height: 290px;
   margin: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 5px;
   text-align: center;
-  -webkit-box-shadow: 17px 24px 46px -24px rgba(168,168,168,1);
--moz-box-shadow: 17px 24px 46px -24px rgba(168,168,168,1);
-box-shadow: 17px 24px 46px -24px rgba(168,168,168,1);
+  -webkit-box-shadow: 17px 24px 46px -24px rgba(168, 168, 168, 1);
+  -moz-box-shadow: 17px 24px 46px -24px rgba(168, 168, 168, 1);
+  box-shadow: 17px 24px 46px -24px rgba(168, 168, 168, 1);
 }
 
 .card img {
-  width: 80%;
-  height: 50%;
+  width: 100%;
+  height: 100%;
 }
 
 .card div {
-    display: flex;
-
+  display: flex;
 }

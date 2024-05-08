@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Cart } from "../components/apiShop/Cart";
-import { addToCart } from "../helpers/cart";
+import { addToCart, searchList } from "../helpers/cart";
 import "../styles/cart.css";
+import "../styles/products.css";
+import { Search } from "../components/apiShop/Search";
 
 export const Shop = () => {
   const [products, setproducts] = useState([]);
-  // const [cart, setCart] = useState([]);
-  let location = useLocation();
+  const [updateCart, setUpdateCart] = useState(false);
+  const [searching, setsearching] = useState("");
+
   const navigate = useNavigate();
 
   const url = "https://fakestoreapi.com/products/";
@@ -29,26 +32,42 @@ export const Shop = () => {
       });
   }
 
+  const list = searchList(products, "title", searching);
+
+  const selectList = searching ? list : products;
+
   return (
     <>
-      <Cart />
+      <div className="container-bar">
+        <Search searching={searching} setsearching={setsearching} />
+        <Cart setUpdateCart={setUpdateCart} updateCart={updateCart} />
+      </div>
 
       <div className="container-card">
-        {products.map((product) => (
+        {selectList.map((product) => (
           <div className="card" key={product.id}>
+            <div className="header-card">
             <img src={product.image} alt="" />
-            <h4>{product.title}</h4>
-            <p>${product.price}</p>
-            <div>
-              <button onClick={() => navigate(`/shop/pruduct/${product.id}`)}>
-                See details
-              </button>
-              <button
-                className="cart-button"
-                onClick={() => addToCart("cart", product)}
-              >
-                Add to cart
-              </button>
+            </div>
+            <div className="footer-card">
+              <h4>{product.title}</h4>
+              <p>${product.price}</p>
+              <div >
+                <button
+                  className="btn-sucees"
+                  onClick={() => navigate(`/shop/pruduct/${product.id}`)}
+                >
+                  See details
+                </button>
+                <button
+                  className="btn-sucees"
+                  onClick={() => {
+                    addToCart("cart", product), setUpdateCart(true);
+                  }}
+                >
+                  Add to cart
+                </button>
+              </div>
             </div>
           </div>
         ))}
