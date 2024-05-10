@@ -5,11 +5,14 @@ import { addToCart, searchList } from "../helpers/cart";
 import "../styles/cart.css";
 import "../styles/products.css";
 import { Search } from "../components/apiShop/Search";
+import { FilterProduct } from "../components/apiShop/FilterProduct";
+import { LoadingSpinner } from "../components/common/LoadingSpinner";
 
 export const Shop = () => {
   const [products, setproducts] = useState([]);
   const [updateCart, setUpdateCart] = useState(false);
   const [searching, setsearching] = useState("");
+  const [isLoading, setLoading] = useState(null);
 
   const navigate = useNavigate();
 
@@ -23,11 +26,14 @@ export const Shop = () => {
   }, []);
 
   function getInfo() {
+    if (!products.length) setLoading(true);
+
     fetch(url, options)
       .then((res) => {
         return res.json();
       })
       .then((res) => {
+        setLoading(false);
         setproducts(res);
       });
   }
@@ -39,20 +45,22 @@ export const Shop = () => {
   return (
     <>
       <div className="container-bar">
-        <Search searching={searching} setsearching={setsearching} />
         <Cart setUpdateCart={setUpdateCart} updateCart={updateCart} />
+        <FilterProduct setproducts={setproducts} getInfo={getInfo} />
+        <Search searching={searching} setsearching={setsearching} />
       </div>
 
       <div className="container-card">
+        {isLoading && <LoadingSpinner />}
         {selectList.map((product) => (
           <div className="card" key={product.id}>
             <div className="header-card">
-            <img src={product.image} alt="" />
+              <img src={product.image} alt="" />
             </div>
             <div className="footer-card">
               <h4>{product.title}</h4>
               <p>${product.price}</p>
-              <div >
+              <div>
                 <button
                   className="btn-sucees"
                   onClick={() => navigate(`/shop/pruduct/${product.id}`)}

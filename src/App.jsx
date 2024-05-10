@@ -1,37 +1,40 @@
-import { useState } from 'react'
-import './App.css'
-import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom'
-import { Home } from './components/Home/Home'
-import { Nasa } from './pages/Nasa'
-import { Shop } from './pages/Shop'
-import { DetailProduct } from './components/apiShop/DetailProduct'
-import './styles/products.css'
+import { useState } from "react";
+import "./App.css";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  useLocation,
+} from "react-router-dom";
+import { Home } from "./components/Home/Home";
+import { Nasa } from "./pages/Nasa";
+import { Shop } from "./pages/Shop";
+import { DetailProduct } from "./components/apiShop/DetailProduct";
+import "./styles/products.css";
 
 function App() {
-  
   return (
     <div>
       <BrowserRouter>
-        <nav className='nav'>
+        <nav className="nav">
           <div>
             <Link to="/">Home</Link>
-            <Link to="/nasa">nasa</Link>
-            <Link to="/shop">shop</Link>
-            
+            <Link to="/nasa">Nasa</Link>
+            <Link to="/shop">Shop</Link>
           </div>
-
         </nav>
-          <div>
+        <div>
           <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/nasa' element={<Nasa />} />
-            <Route path='/shop' element={<Shop />} />
-            <Route path='/shop/pruduct/:id' element={<DetailProduct />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/nasa" element={<Nasa />} />
+            <Route path="/shop" element={<Shop />} />
+            <Route path="/shop/pruduct/:id" element={<DetailProduct />} />
           </Routes>
-          </div>
+        </div>
       </BrowserRouter>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

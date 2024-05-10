@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-export const Search = ({searching,setsearching}) => {
-    function handleInputChange(e) {
-        console.log(e.target.value);
-        setsearching(e.target.value)
-    }
+export const Search = ({ setsearching }) => {
+  function handleInputChange(e) {
+    setsearching(e.target.value.toLowerCase());
+  }
 
   return (
     <div>
-        <input type="text" onChange={(e)=>handleInputChange(e)} />
+      <input
+        type="text"
+        placeholder="Search product"
+        onChange={(e) => handleInputChange(e)}
+      />
     </div>
-  )
-}
+  );
+};
